@@ -10,7 +10,8 @@ import (
 	"regexp"
 )
 
-var templates = template.Must(template.ParseFiles("list-tutorial.html", "edit-tutorial.html", "add-tutorial.html"))
+var templates = template.Must(template.ParseFiles("template/list-tutorial.html", "template/edit-tutorial.html",
+	"template/add-tutorial.html"))
 var validPath = regexp.MustCompile("^/tutorial/(.*)/(.+)$")
 
 func ListTutorials(w http.ResponseWriter, r *http.Request) {
