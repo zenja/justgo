@@ -1,0 +1,7 @@
+<h1>All Tutorials</h1>
+<ul>
+    {{range .}}
+    <li><a href="/tutorial/edit/{{.}}">{{.}}</a> (<a href="/tutorial/delete/{{.}}">Del</a>)</li>
+    {{end}}
+</ul>
+<p><a href="/tutorial/new/">Add a new tutorial</a></p>

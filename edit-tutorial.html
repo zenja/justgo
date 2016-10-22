@@ -1,0 +1,31 @@
+<h1>Editing a tutorial</h1>
+
+<form action="/tutorial/save/" method="POST">
+    <div>
+        <p>Key: {{.Key}}</p>
+    </div>
+    <input name="key" type="hidden" value="{{.Key}}">
+    <div>
+        <lable>Title: </lable>
+        <br>
+        <textarea name="title" rows="1" cols="80">{{.Title}}</textarea>
+    </div>
+    <div>
+        <lable>Description: </lable>
+        <br>
+        <textarea name="description" rows="5" cols="80">{{.Description}}</textarea>
+    </div>
+    <div>
+        <label>Code: </label>
+        <br>
+        <textarea name="code" rows="40" cols="80">{{.Code}}</textarea>
+    </div>
+    <div>
+        <label>ExpectedStdout: </label>
+        <br>
+        <textarea name="expected_stdout" rows="5" cols="80">{{.ExpectedStdout}}</textarea>
+    </div>
+    <div>
+        <input type="submit" value="Save">
+    </div>
+</form>
