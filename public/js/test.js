@@ -81,7 +81,12 @@ $(function() {
                         // Check if stdout is as expected
                         if (window.expectedStdout) {
                             if (equalsIgnoreLineEnding(window.expectedStdout, stdout)) {
-                                swal("Good job!", "You passed the test", "success")
+                                if (window.nextKey) {
+                                    var extMsg = "<br><a href='/test/" + window.nextKey + "'>Next Test</a>";
+                                } else {
+                                    var extMsg = "";
+                                }
+                                swal({title:"Good job!", text:"You passed the test"+extMsg, type:"success", html:true});
                             } else {
                                 $.growl.warning({ message: "Not correct. :)" });
                             }
