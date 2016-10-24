@@ -7,3 +7,9 @@ type Tutorial struct {
 	Code           string
 	ExpectedStdout string
 }
+
+type ExtendedTutorial struct {
+	Tutorial
+	PrevKey string
+	NextKey string
+}

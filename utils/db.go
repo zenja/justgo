@@ -7,6 +7,7 @@ import (
 	"github.com/boltdb/bolt"
 	"github.com/zenja/justgo/model"
 	"log"
+	"sort"
 )
 
 const (
@@ -112,4 +113,37 @@ func FetchTutorial(key string) (*model.Tutorial, error) {
 		return nil, nil
 	}
 	return decTutorial(tuBytes)
+}
+
+func FetchPreNextKey(key string) (string, string, error) {
+	indexOf := func(sortedStrs []string, str string) int {
+		poIndex := sort.SearchStrings(sortedStrs, str)
+		if poIndex < len(sortedStrs) && sortedStrs[poIndex] == str {
+			return poIndex
+		} else {
+			return -1
+		}
+	}
+	keys, err := FetchAllKeys()
+	if err != nil {
+		return "", "", err
+	}
+	if len(keys) == 0 {
+		return "", "", fmt.Errorf("there is no keys at all")
+	}
+	sort.Strings(keys)
+	index := indexOf(keys, key)
+	if index == -1 {
+		return "", "", fmt.Errorf("key %s not found", key)
+	}
+	if len(keys) == 1 {
+		return "", "", nil
+	}
+	if index == 0 {
+		return "", keys[index+1], nil
+	}
+	if index == len(keys)-1 {
+		return keys[index-1], "", nil
+	}
+	return keys[index-1], keys[index+1], nil
 }

@@ -117,6 +117,17 @@ func main() {
                 <textarea rows="10" readonly id="compile_error"></textarea>
             </div>
         </div>
+
+        <div id="nav_tutorial">
+            <p>
+                {{if ne .PrevKey ""}}
+                <a href="/test/{{.PrevKey}}">Prev</a>
+                {{end}}
+                {{if ne .NextKey ""}}
+                <a href="/test/{{.NextKey}}">Next</a>
+                {{end}}
+            </p>
+        </div>
     </div>
 
     <div class="clearfix"></div>

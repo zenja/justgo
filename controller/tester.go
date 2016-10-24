@@ -2,6 +2,7 @@ package controller
 
 import (
 	"fmt"
+	"github.com/zenja/justgo/model"
 	"github.com/zenja/justgo/template"
 	"github.com/zenja/justgo/utils"
 	"log"
@@ -35,7 +36,15 @@ func Test(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = template.All.ExecuteTemplate(w, "test.html", t)
+	// Fetch the previous & next key
+	prevKey, nextKey, _ := utils.FetchPreNextKey(key)
+	et := &model.ExtendedTutorial{
+		Tutorial: *t,
+		PrevKey:  prevKey,
+		NextKey:  nextKey,
+	}
+
+	err = template.All.ExecuteTemplate(w, "test.html", et)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		log.Printf("Error in executing template test.html: %s\n", err)
