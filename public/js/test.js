@@ -30,8 +30,8 @@ $(function() {
     var $stderr = $("#stderr");
     var $compileError = $("#compile_error");
 
-    var showStdout = function(content) {
-        $stdoutWrapper.fadeIn(400);
+    var showStdout = function(content, finishHook) {
+        $stdoutWrapper.fadeIn(400, finishHook);
         $stdout.html(content);
     };
 
@@ -77,19 +77,19 @@ $(function() {
                 var event = response["Events"][i];
                 if (event["Kind"] == "stdout" && event["Delay"] == 0) {
                     stdout = event["Message"];
-                    showStdout(stdout);
+                    showStdout(stdout, function(){
+                        // Check if stdout is as expected
+                        if (window.expectedStdout) {
+                            if (equalsIgnoreLineEnding(window.expectedStdout, stdout)) {
+                                swal("Good job!", "You passed the test", "success")
+                            } else {
+                                $.growl.warning({ message: "Not correct. :)" });
+                            }
+                        }
+                    });
                 }
                 if (event["Kind"] == "stderr" && event["Delay"] == 0) {
                     showStderr(event["Message"]);
-                }
-            }
-
-            // Check if stdout is as expected
-            if (window.expectedStdout) {
-                if (equalsIgnoreLineEnding(window.expectedStdout, stdout)) {
-                    swal("Good job!", "You passed the test", "success")
-                } else {
-                    $.growl.warning({ message: "Not correct. :)" });
                 }
             }
         }
