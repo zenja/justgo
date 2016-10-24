@@ -32,6 +32,9 @@ func main() {
 	// Controller for compiling
 	http.HandleFunc("/compile/", controller.Compile)
 
+	// Tester
+	http.HandleFunc("/test/", controller.Test)
+
 	// Controller for serving static files
 	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
 

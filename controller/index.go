@@ -8,7 +8,7 @@ import (
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	err := template.All.ExecuteTemplate(w, "index.html", &model.Tutorial{})
+	err := template.All.ExecuteTemplate(w, "test.html", &model.Tutorial{})
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		log.Println(err)

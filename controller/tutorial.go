@@ -10,7 +10,7 @@ import (
 	"github.com/zenja/justgo/template"
 )
 
-var validPath = regexp.MustCompile("^/tutorial/(.*)/(.+)$")
+var tutorialValidPath = regexp.MustCompile("^/tutorial/(.*)/(.+)$")
 
 func ListTutorials(w http.ResponseWriter, r *http.Request) {
 	keys, err := utils.FetchAllKeys()
@@ -27,7 +27,7 @@ func ListTutorials(w http.ResponseWriter, r *http.Request) {
 
 func DeleteTutorial(w http.ResponseWriter, r *http.Request) {
 	// Get key from /tutorial/delete/<key>
-	m := validPath.FindStringSubmatch(r.URL.Path)
+	m := tutorialValidPath.FindStringSubmatch(r.URL.Path)
 	if m == nil {
 		http.NotFound(w, r)
 		return
@@ -72,7 +72,7 @@ func SaveTutorial(w http.ResponseWriter, r *http.Request) {
 
 func EditTutorial(w http.ResponseWriter, r *http.Request) {
 	// Get key from /tutorial/edit/<key>
-	m := validPath.FindStringSubmatch(r.URL.Path)
+	m := tutorialValidPath.FindStringSubmatch(r.URL.Path)
 	if m == nil {
 		http.NotFound(w, r)
 		return

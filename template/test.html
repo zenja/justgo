@@ -19,10 +19,10 @@
     <![endif]-->
 
     <script>
-        var window.title = "{{.Title}}";
-        var window.code = "{{.Code}}";
-        var window.description = "{{.Description}}";
-        var window.expected_output = "{{.ExpectedStdout}}";
+        window.title = "{{.Title}}";
+        window.code = "{{.Code}}";
+        window.description = "{{.Description}}";
+        window.expected_output = "{{.ExpectedStdout}}";
     </script>
 </head>
 
@@ -52,6 +52,7 @@
 <div class="container">
 
     <div id="editor_wrapper">
+        {{if eq .Code ""}}
         <div id="editor" >package main
 
 import "fmt"
@@ -59,21 +60,28 @@ import "fmt"
 func main() {
     fmt.Println("Hello, World!")
 }</div>
+        {{else}}
+        <div id="editor">{{.Code}}</div>
+        {{end}}
         <button type="button" class="btn btn-primary" id="btn_run">Run</button>
     </div>
 
     <div id="right_panel">
+        {{if ne .Title ""}}
         <!-- Description -->
         <div id="description_wrapper">
-            <p class="one-line" id="title"></p>
-            <p id="description"></p>
+            <p class="one-line" id="title">{{.Title}}</p>
+            <p id="description">{{.Description}}</p>
         </div>
+        {{end}}
 
+        {{if ne .ExpectedStdout ""}}
         <!-- Expected Output -->
         <div id="expected_output_wrapper">
             <p class="one-line">Expected Output:</p>
             <p id="expected_output"></p>
         </div>
+        {{end}}
 
         <!-- Running Results -->
         <div id="result_wrapper">
