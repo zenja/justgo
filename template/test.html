@@ -5,11 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    {{if eq .Title ""}}
     <title>Just GO</title>
+    {{else}}
+    <title>Just GO - {{.Title}}</title>
+    {{end}}
 
     <!-- Bootstrap -->
     <link href="/public/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/public/css/index.css" rel="stylesheet">
+
+    <!-- Sweet alert -->
+    <link href="/public/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet">
+
+    <!-- Growl -->
+    <link href="/public/bower_components/growl/stylesheets/jquery.growl.css" rel="stylesheet">
+
+    <!-- Page CSS -->
+    <link href="/public/css/test.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,7 +34,7 @@
         window.title = "{{.Title}}";
         window.code = "{{.Code}}";
         window.description = "{{.Description}}";
-        window.expected_output = "{{.ExpectedStdout}}";
+        window.expectedStdout = "{{.ExpectedStdout}}";
     </script>
 </head>
 
@@ -70,35 +82,39 @@ func main() {
         {{if ne .Title ""}}
         <!-- Description -->
         <div id="description_wrapper">
-            <p class="one-line" id="title">{{.Title}}</p>
-            <p id="description">{{.Description}}</p>
+            <h1 id="title">{{.Title}}</h1>
+            <div id="description"><p>{{.Description}}</p></div>
         </div>
         {{end}}
+
+        <hr>
 
         {{if ne .ExpectedStdout ""}}
         <!-- Expected Output -->
         <div id="expected_output_wrapper">
-            <p class="one-line">Expected Output:</p>
-            <p id="expected_output"></p>
+            <p>Expected Output:</p>
+            <textarea class="form-control" rows="3" readonly id="expected_output">{{.ExpectedStdout}}</textarea>
         </div>
         {{end}}
+
+        <hr>
 
         <!-- Running Results -->
         <div id="result_wrapper">
             <!-- Stdout -->
             <div id="stdout_wrapper">
-                <p class="one-line">Standard Output:</p>
-                <div id="stdout"></div>
+                <p>Standard Output:</p>
+                <textarea class="form-control" rows="10" readonly id="stdout"></textarea>
             </div>
             <!-- Stderr -->
             <div id="stderr_wrapper">
-                <p class="one-line">Standard Error:</p>
-                <div id="stderr"></div>
+                <p>Standard Error:</p>
+                <textarea rows="10" readonly id="stderr"></textarea>
             </div>
             <!-- Compile Error -->
             <div id="compile_error_wrapper">
-                <p class="one-line">Error:</p>
-                <div id="compile_error"></div>
+                <p>Error:</p>
+                <textarea rows="10" readonly id="compile_error"></textarea>
             </div>
         </div>
     </div>
@@ -113,6 +129,13 @@ func main() {
 <script src="/public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Ace code editor -->
 <script src="/public/bower_components/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-<script src="/public/js/index.js" type="text/javascript" charset="utf-8"></script>
+<!-- Marded for markdown rendering -->
+<script src="/public/bower_components/marked/lib/marked.js" type="text/javascript" charset="utf-8"></script>
+<!-- Sweet alert -->
+<script src="/public/bower_components/sweetalert/dist/sweetalert.min.js" type="text/javascript" charset="utf-8"></script>
+<!-- Growl -->
+<script src="/public/bower_components/growl/javascripts/jquery.growl.js" type="text/javascript" charset="utf-8"></script>
+<!-- Page JS -->
+<script src="/public/js/test.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

@@ -13,6 +13,15 @@ body {
     padding-top: 60px;
 }
 
+hr {
+    margin: 10px 0;
+    border-top: 1px dashed #8c8b8b;
+}
+
+textarea {
+    resize: none;
+}
+
 .container {
     height: 100%;
 }
@@ -39,6 +48,7 @@ body {
 
 #right_panel {
     display: flex;
+    overflow: scroll;
     flex-direction: column;
     height: calc(100% - 50px);
     float: right;
@@ -47,53 +57,50 @@ body {
 }
 
 #description_wrapper {
-    max-height: 25%;
-    overflow: scroll;
 }
 
 #expected_output_wrapper {
-    max-height: 25%;
-    overflow: scroll;
+}
+
+#expected_output {
+    resize: none;
+    width: 100%;
 }
 
 #result_wrapper {
     height: 100%;
-    overflow: scroll;
     flex-grow: 1;
 }
 
-.one-line {
-    margin: 0;
-    padding: 0;
-    height: 20px;
-}
-
 #stdout_wrapper {
-    height: 33%;
+    display: none;
 }
 
 #stderr_wrapper {
-    height: 33%;
+    display: none;
 }
 
 #compile_error_wrapper {
-    height: 33%;
+    display: none;
 }
 
 #stdout {
     background-color: #333;
     color: #eee;
-    height: calc(100% - 20px);
+    min-height: 100px;
+    width: 100%;
 }
 
 #stderr {
     background-color: #333;
     color: #eee;
-    height: calc(100% - 20px);
+    min-height: 100px;
+    width: 100%;
 }
 
 #compile_error {
     background-color: #333;
     color: #eee;
-    height: calc(100% - 20px);
+    min-height: 100px;
+    width: 100%;
 }

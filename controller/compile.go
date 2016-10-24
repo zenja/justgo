@@ -3,6 +3,7 @@ package controller
 import (
 	"io"
 	"net/http"
+	"log"
 )
 
 func Compile(w http.ResponseWriter, r *http.Request) {
@@ -14,11 +15,13 @@ func Compile(w http.ResponseWriter, r *http.Request) {
 	response, err := http.Post("http://golang.org/compile", r.Header.Get("Content-type"), r.Body)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		log.Println("Error sending code to compile:", err)
 		return
 	}
 	defer response.Body.Close()
 	if _, err := io.Copy(w, response.Body); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		log.Println("Error sending code to compile:", err)
 		return
 	}
 }
