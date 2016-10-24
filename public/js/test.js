@@ -3,6 +3,7 @@ $(function() {
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.getSession().setMode("ace/mode/golang");
+    editor.setKeyboardHandler("ace/keyboard/vim");
 
     // Marddown
     marked.setOptions({
