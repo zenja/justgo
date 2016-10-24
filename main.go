@@ -22,10 +22,21 @@ func main() {
 
 	// TODO Add shutdown hook to close DB
 
+	// Controller for tutorial admin
 	http.HandleFunc("/tutorial/new/", controller.AddTutorial)
 	http.HandleFunc("/tutorial/save/", controller.SaveTutorial)
 	http.HandleFunc("/tutorial/all/", controller.ListTutorials)
 	http.HandleFunc("/tutorial/edit/", controller.EditTutorial)
 	http.HandleFunc("/tutorial/delete/", controller.DeleteTutorial)
+
+	// Controller for compiling
+	http.HandleFunc("/compile/", controller.Compile)
+
+	// Controller for serving static files
+	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
+
+	// Index page
+	http.HandleFunc("/", controller.Index)
+
 	http.ListenAndServe(":8080", nil)
 }

@@ -1,0 +1,99 @@
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+
+html,body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    padding-top: 60px;
+}
+
+.container {
+    height: 100%;
+}
+
+#editor_wrapper {
+    position: relative;
+    height: calc(100% - 50px);
+    width: 50%;
+    float: left;
+}
+
+#editor {
+    height: 100%;
+    width: 100%;
+}
+
+#btn_run {
+    position: absolute;
+    float: left;
+    top: 0;
+    right: 0;
+    z-index: 999;
+}
+
+#right_panel {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 50px);
+    float: right;
+    padding-left: 20px;
+    width: 50%;
+}
+
+#description_wrapper {
+    max-height: 25%;
+    overflow: scroll;
+}
+
+#expected_output_wrapper {
+    max-height: 25%;
+    overflow: scroll;
+}
+
+#result_wrapper {
+    height: 100%;
+    overflow: scroll;
+    flex-grow: 1;
+}
+
+.one-line {
+    margin: 0;
+    padding: 0;
+    height: 20px;
+}
+
+#stdout_wrapper {
+    height: 33%;
+}
+
+#stderr_wrapper {
+    height: 33%;
+}
+
+#compile_error_wrapper {
+    height: 33%;
+}
+
+#stdout {
+    background-color: #333;
+    color: #eee;
+    height: calc(100% - 20px);
+}
+
+#stderr {
+    background-color: #333;
+    color: #eee;
+    height: calc(100% - 20px);
+}
+
+#compile_error {
+    background-color: #333;
+    color: #eee;
+    height: calc(100% - 20px);
+}

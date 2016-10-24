@@ -4,14 +4,12 @@ import (
 	"fmt"
 	"github.com/zenja/justgo/model"
 	"github.com/zenja/justgo/utils"
-	"html/template"
 	"log"
 	"net/http"
 	"regexp"
+	"github.com/zenja/justgo/template"
 )
 
-var templates = template.Must(template.ParseFiles("template/list-tutorial.html", "template/edit-tutorial.html",
-	"template/add-tutorial.html"))
 var validPath = regexp.MustCompile("^/tutorial/(.*)/(.+)$")
 
 func ListTutorials(w http.ResponseWriter, r *http.Request) {
@@ -20,7 +18,7 @@ func ListTutorials(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	err = templates.ExecuteTemplate(w, "list-tutorial.html", keys)
+	err = template.All.ExecuteTemplate(w, "list-tutorial.html", keys)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -44,7 +42,7 @@ func DeleteTutorial(w http.ResponseWriter, r *http.Request) {
 }
 
 func AddTutorial(w http.ResponseWriter, r *http.Request) {
-	err := templates.ExecuteTemplate(w, "add-tutorial.html", nil)
+	err := template.All.ExecuteTemplate(w, "add-tutorial.html", nil)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -95,7 +93,7 @@ func EditTutorial(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = templates.ExecuteTemplate(w, "edit-tutorial.html", t)
+	err = template.All.ExecuteTemplate(w, "edit-tutorial.html", t)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		log.Printf("Error in EditTutorial: %s\n", err)
