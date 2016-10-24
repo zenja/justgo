@@ -3,11 +3,12 @@ package controller
 import (
 	"fmt"
 	"github.com/zenja/justgo/model"
+	"github.com/zenja/justgo/template"
 	"github.com/zenja/justgo/utils"
 	"log"
 	"net/http"
 	"regexp"
-	"github.com/zenja/justgo/template"
+	"sort"
 )
 
 var tutorialValidPath = regexp.MustCompile("^/tutorial/(.*)/(.+)$")
@@ -18,6 +19,7 @@ func ListTutorials(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	sort.Strings(keys)
 	err = template.All.ExecuteTemplate(w, "list-tutorial.html", keys)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
