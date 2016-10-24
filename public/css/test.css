@@ -57,6 +57,8 @@ textarea {
 }
 
 #description_wrapper {
+    max-height: 50%;
+    overflow: scroll;
 }
 
 #expected_output_wrapper {

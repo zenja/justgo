@@ -82,9 +82,9 @@ func main() {
 
     <div id="right_panel">
         {{if ne .Title ""}}
+        <h1 id="title">{{.Title}}</h1>
         <!-- Description -->
         <div id="description_wrapper">
-            <h1 id="title">{{.Title}}</h1>
             <div id="description"><p>{{.Description}}</p></div>
         </div>
         {{end}}
