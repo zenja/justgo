@@ -12,7 +12,7 @@ func Compile(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, http.StatusText(code), code)
 		return
 	}
-	response, err := http.Post("http://golang.org/compile", r.Header.Get("Content-type"), r.Body)
+	response, err := http.Post("https://golang.org/compile", r.Header.Get("Content-type"), r.Body)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		log.Println("Error sending code to compile:", err)
