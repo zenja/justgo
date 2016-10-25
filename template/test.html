@@ -81,7 +81,15 @@ func main() {
 
     <div id="right_panel">
         {{if ne .Title ""}}
-        <h1 id="title">{{.Title}}</h1>
+        <h1 id="title">
+            {{.Title}}
+            {{if ne .PrevKey ""}}
+            <a href="/test/{{.PrevKey}}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+            {{end}}
+            {{if ne .NextKey ""}}
+            <a href="/test/{{.NextKey}}"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+            {{end}}
+        </h1>
         <!-- Description -->
         <div id="description_wrapper">
             <div id="description"><p>{{.Description}}</p></div>
@@ -117,17 +125,6 @@ func main() {
                 <p id="overlay_error" class="overlay">Error</p>
                 <textarea class="form-control" rows="7" readonly id="compile_error"></textarea>
             </div>
-        </div>
-
-        <div id="nav_tutorial">
-            <p>
-                {{if ne .PrevKey ""}}
-                <a href="/test/{{.PrevKey}}">Prev</a>
-                {{end}}
-                {{if ne .NextKey ""}}
-                <a href="/test/{{.NextKey}}">Next</a>
-                {{end}}
-            </p>
         </div>
     </div>
 
