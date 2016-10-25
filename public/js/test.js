@@ -84,11 +84,11 @@ $(function() {
                         if (window.expectedStdout) {
                             if (equalsIgnoreLineEnding(window.expectedStdout, stdout)) {
                                 if (window.nextKey) {
-                                    var extMsg = "<br><a href='/test/" + window.nextKey + "'>Next Test</a>";
+                                    var extMsg = "Try <a href='/test/" + window.nextKey + "'>next test</a>";
                                 } else {
                                     var extMsg = "";
                                 }
-                                swal({title:"Good job!", text:"You passed the test"+extMsg, type:"success", html:true});
+                                swal({title:"Good job!", text:"You passed the test. "+extMsg, type:"success", html:true});
                             } else {
                                 $.growl.warning({ message: "Not correct. :)" });
                             }
