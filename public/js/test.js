@@ -4,6 +4,7 @@ $(function() {
     editor.setTheme("ace/theme/monokai");
     editor.getSession().setMode("ace/mode/golang");
     editor.setKeyboardHandler("ace/keyboard/vim");
+    editor.setTheme("ace/theme/tomorrow_night_bright");
 
     // Marddown
     marked.setOptions({
@@ -102,7 +103,8 @@ $(function() {
     };
 
     var compileFailed = function(err) {
-        $.growl.error({ message: err });
+        $.growl.error({ message: err["responseText"] });
+        console.log(JSON.stringify(err));
     };
 
     // The "Run" button

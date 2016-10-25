@@ -11,6 +11,8 @@ html,body {
 
 body {
     padding-top: 60px;
+    background-color: #303133;
+    color: #D6DBDF;
 }
 
 hr {
@@ -44,6 +46,12 @@ textarea {
     top: 10px;
     right: 10px;
     z-index: 999;
+    font-family: Lato, "Helvetica Neue", Helvetica, sans-serif;
+    padding: 5px 15px;
+    background-color: #5DADE2;
+    color: #283747;
+    border-width: 0;
+    border-radius: 5px;
 }
 
 #right_panel {
@@ -57,8 +65,6 @@ textarea {
 }
 
 #description_wrapper {
-    max-height: 50%;
-    overflow: scroll;
 }
 
 #expected_output_wrapper {
@@ -67,6 +73,8 @@ textarea {
 #expected_output {
     resize: none;
     width: 100%;
+    background-color: #111;
+    color: #5DADE2;
 }
 
 #result_wrapper {
@@ -76,33 +84,55 @@ textarea {
 
 #stdout_wrapper {
     display: none;
+    position: relative;
 }
 
 #stderr_wrapper {
     display: none;
+    position: relative;
 }
 
 #compile_error_wrapper {
     display: none;
+    position: relative;
 }
 
 #stdout {
-    background-color: #333;
-    color: #eee;
     min-height: 100px;
     width: 100%;
+    background-color: #111;
+    color: #5DADE2;
+    margin: 10px 0;
 }
 
 #stderr {
-    background-color: #333;
-    color: #eee;
     min-height: 100px;
     width: 100%;
+    background-color: #111;
+    color: #F5B041;
+    margin: 10px 0;
 }
 
 #compile_error {
-    background-color: #333;
-    color: #eee;
     min-height: 100px;
     width: 100%;
+    background-color: #111;
+    color: #E74C3C;
+    margin: 10px 0;
+}
+
+.overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 999;
+    padding: 5px 10px;
+    background-color: rgba(255, 255, 255, 0.0980392);
+    color: rgb(235, 235, 235);
+}
+
+#overlay_stderr {
+}
+
+#overlay_error {
 }

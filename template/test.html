@@ -77,7 +77,7 @@ func main() {
         {{else}}
         <div id="editor">{{.Code}}</div>
         {{end}}
-        <button type="button" class="btn btn-primary" id="btn_run">Run</button>
+        <button type="button" id="btn_run"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> RUN</button>
     </div>
 
     <div id="right_panel">
@@ -105,18 +105,18 @@ func main() {
         <div id="result_wrapper">
             <!-- Stdout -->
             <div id="stdout_wrapper">
-                <p>Standard Output:</p>
-                <textarea class="form-control" rows="10" readonly id="stdout"></textarea>
+                <p class="overlay">Standard Output</p>
+                <textarea class="form-control" rows="7" readonly id="stdout"></textarea>
             </div>
             <!-- Stderr -->
             <div id="stderr_wrapper">
-                <p>Standard Error:</p>
-                <textarea rows="10" readonly id="stderr"></textarea>
+                <p id="overlay_stderr" class="overlay">Standard Error</p>
+                <textarea class="form-control" rows="7" readonly id="stderr"></textarea>
             </div>
             <!-- Compile Error -->
             <div id="compile_error_wrapper">
-                <p>Error:</p>
-                <textarea rows="10" readonly id="compile_error"></textarea>
+                <p id="overlay_error" class="overlay">Error</p>
+                <textarea class="form-control" rows="7" readonly id="compile_error"></textarea>
             </div>
         </div>
 
