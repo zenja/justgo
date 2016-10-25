@@ -27,6 +27,34 @@ func ListTutorials(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+type tutorialPointerSlice []*model.Tutorial
+
+func (s tutorialPointerSlice) Len() int {
+	return len(s)
+}
+
+func (s tutorialPointerSlice) Swap(i, j int) {
+	s[i], s[j] = s[j], s[i]
+}
+
+func (s tutorialPointerSlice) Less(i, j int) bool {
+	return s[i].Key < s[j].Key
+}
+
+func TutorialsOverview(w http.ResponseWriter, r *http.Request) {
+	tts, err := utils.FetchAllTutorials()
+	if err != nil {
+		http.Error(w, "failed to fetch all tutorials: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+	sort.Sort(tutorialPointerSlice(tts))
+	err = template.All.ExecuteTemplate(w, "tutorials-overview.html", tts)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+}
+
 func DeleteTutorial(w http.ResponseWriter, r *http.Request) {
 	// Get key from /tutorial/delete/<key>
 	m := tutorialValidPath.FindStringSubmatch(r.URL.Path)

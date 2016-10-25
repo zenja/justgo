@@ -38,8 +38,11 @@ func main() {
 	// Controller for serving static files
 	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
 
-	// Index page
-	http.HandleFunc("/", controller.Index)
+	// Playground page
+	http.HandleFunc("/play/", controller.Play)
+
+	// Index page lists all tutorials
+	http.HandleFunc("/", controller.TutorialsOverview)
 
 	http.ListenAndServe(":8080", nil)
 }

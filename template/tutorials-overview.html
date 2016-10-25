@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Just GO - About</title>
+    <title>All Tutorials</title>
 
     <!-- Bootstrap -->
     <link href="/public/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -25,25 +25,21 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                <li class="active"><a href="#">About</a></li>
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="/public/about.html">About</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 
 <div class="container">
-    <p>Just Go is a tutorial of the Go programming language with a series online coding tests. It is WIP.</p>
-    <p>Contact: <a href="mailto:xwang16@paypal.com">xwang16 AT paypal.com</a></p>
-    <p>
-        If you find any issues, please kindly report it here:<br>
-        <!-- Place this tag where you want the button to render. -->
-        <a class="github-button" href="https://github.com/zenja/justgo/issues" data-icon="octicon-issue-opened" data-style="mega" data-count-api="/repos/zenja/justgo#open_issues_count" data-count-aria-label="# issues on GitHub" aria-label="Issue zenja/justgo on GitHub">Issue</a>
-    </p>
+    <h1>All Tests</h1>
+    <ul>
+        {{range .}}
+        <li><a href="/test/{{.Key}}">{{.Title}}</a></li>
+        {{end}}
+    </ul>
 </div>
-
-<!-- Place this tag in your head or just before your close body tag. -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 </body>
 </html>

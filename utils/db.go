@@ -101,6 +101,24 @@ func FetchAllKeys() ([]string, error) {
 	return keys, nil
 }
 
+func FetchAllTutorials() ([]*model.Tutorial, error) {
+	var tts []*model.Tutorial
+	err := DB.View(func(tx *bolt.Tx) error {
+		// FIXME Assume bucket exists and has keys
+		b := tx.Bucket([]byte(bucketName))
+		b.ForEach(func(k, v []byte) error {
+			t, e := decTutorial(v)
+			if e != nil {
+				return e
+			}
+			tts = append(tts, t)
+			return nil
+		})
+		return nil
+	})
+	return tts, err
+}
+
 func FetchTutorial(key string) (*model.Tutorial, error) {
 	var tuBytes []byte
 	DB.View(func(tx *bolt.Tx) error {
