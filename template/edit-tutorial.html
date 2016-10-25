@@ -3,9 +3,11 @@
 <p>Back to <a href="/tutorial/all/">all tutorials</a></p>
 <form action="/tutorial/save/" method="POST">
     <div>
-        <p>Key: {{.Key}}</p>
+        <lable>Key: </lable>
+        <br>
+        <textarea name="new_key" rows="1" cols="80">{{.Key}}</textarea>
     </div>
-    <input name="key" type="hidden" value="{{.Key}}">
+    <input name="origin_key" type="hidden" value="{{.Key}}">
     <div>
         <lable>Title: </lable>
         <br>

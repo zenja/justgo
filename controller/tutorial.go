@@ -80,13 +80,21 @@ func AddTutorial(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveTutorial(w http.ResponseWriter, r *http.Request) {
-	key := r.FormValue("key")
+	newKey := r.FormValue("new_key")
+	originKey := r.FormValue("origin_key")
 	title := r.FormValue("title")
 	description := r.FormValue("description")
 	code := r.FormValue("code")
 	expStdout := r.FormValue("expected_stdout")
+	if newKey != originKey && originKey != "" {
+		if err := utils.RemoveTutorial(originKey); err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			log.Printf("Error in SaveTutorial: failed to delete origin tutorial %s: %s\n", originKey, err)
+			return
+		}
+	}
 	t := &model.Tutorial{
-		Key:            key,
+		Key:            newKey,
 		Title:          title,
 		Description:    description,
 		Code:           code,
