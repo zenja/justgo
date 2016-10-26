@@ -1,7 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        function confirmUser(key) {
+            var ask=confirm("Are you sure");
+            if (ask) {
+                window.location="/tutorial/delete/" + key;
+            }
+        }
+    </script>
+</head>
+
+<body>
+
 <h1>All Tutorials</h1>
 <ul>
     {{range .}}
-    <li><a href="/tutorial/edit/{{.}}">{{.}}</a> (<a href="/tutorial/delete/{{.}}">Del</a>)</li>
+    <li><a href="/tutorial/edit/{{.}}">{{.}}</a> (<a href="#" onclick="confirmUser({{.}})">Del</a>)</li>
     {{end}}
 </ul>
 <p><a href="/tutorial/new/">Add a new tutorial</a></p>
+
+</body>
+
+</html>
